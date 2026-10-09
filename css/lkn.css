@@ -1,0 +1,89 @@
+/* Lake Norman-specific components (comp sets, factor screens, acquisition,
+   conclusions, data notes). The shared template stylesheet is styles.css. */
+.data-note { background: #f4f7f6; border: var(--hairline); border-left: 4px solid #075646; border-radius: 8px; padding: 14px 18px; margin: 18px 0 0; font-size: 0.92rem; }
+.data-note h3 { margin: 0 0 6px; font-size: 1rem; }
+.data-note ul { margin: 6px 0 0; padding-left: 18px; }
+.data-note li { margin: 3px 0; }
+.muted { color: var(--color-text-muted); }
+
+.cs-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 12px; }
+@media (max-width: 1100px) { .cs-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .cs-cards { grid-template-columns: 1fr; } }
+.cs-card { background: #fff; border: var(--hairline); border-top: 4px solid var(--c); border-radius: 8px; padding: 12px 14px; font-size: 0.86rem; }
+.cs-card h4 { margin: 0 0 4px; color: var(--c); font-size: 0.98rem; }
+.cs-card p { margin: 6px 0; }
+.cs-card__count { color: var(--color-text-muted); font-size: 0.78rem; }
+.cs-card__lab { display: block; color: var(--color-text-muted); font-size: 0.76rem; }
+.cs-card__note { font-size: 0.8rem; color: #6b4a12; background: #fdf6e7; border-radius: 6px; padding: 6px 8px; }
+
+.cs-filters { background: #fff; border: var(--hairline); border-radius: 8px; padding: 12px 14px; margin-top: 10px; }
+.cs-filter--sets { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin-bottom: 10px; }
+.cs-filter-row { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: flex-end; }
+.cs-filter { display: flex; flex-direction: column; gap: 3px; font-size: 0.8rem; }
+.cs-filter__lab { font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--color-text-muted); }
+.cs-filter select { font: inherit; font-size: 0.84rem; padding: 4px 6px; border: 1px solid #cfd8dc; border-radius: 6px; background: #fff; max-width: 220px; }
+.cs-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 0.82rem; padding: 3px 9px; border: 1.5px solid var(--c); border-radius: 999px; cursor: pointer; }
+.cs-chip input { accent-color: var(--c); margin: 0; }
+.cs-reset { font: inherit; font-size: 0.82rem; padding: 5px 12px; border: 1px solid #cfd8dc; border-radius: 6px; background: #f4f7f6; cursor: pointer; }
+.cs-warn { background: #fdf6e7; color: #6b4a12; border-radius: 6px; padding: 6px 10px; font-size: 0.86rem; margin: 10px 0 0; }
+.cs-sum td { vertical-align: top; }
+.cs-chart { height: 420px; }
+@media (max-width: 600px) { .cs-chart { height: 340px; } }
+.cs-table-wrap { max-height: 560px; overflow: auto; }
+.cs-tbl { font-size: 0.8rem; }
+.cs-tbl th { cursor: pointer; white-space: nowrap; position: sticky; top: 0; background: #f4f7f6; z-index: 1; }
+.cs-tbl th.sorted { color: #075646; }
+.cs-tbl td.cs-title { min-width: 220px; max-width: 320px; }
+.cs-tbl td:nth-child(n+7) { text-align: right; white-space: nowrap; }
+.cs-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+.cs-flag { display: inline-block; margin-left: 6px; font-size: 0.68rem; font-weight: 700; color: #6b4a12; background: #fdf0d5; border-radius: 999px; padding: 0 6px; cursor: help; }
+.cs-tier { display: inline-block; font-size: 0.68rem; font-weight: 700; border-radius: 999px; padding: 1px 7px; }
+.cs-tier--A { background: #e3f1ec; color: #075646; }
+.cs-tier--B { background: #fdf0d5; color: #6b4a12; }
+.cs-tier--C { background: #eceff1; color: #5a6b78; }
+.cs-prem th[scope="row"] { min-width: 210px; }
+.cs-strong-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 900px) { .cs-strong-grid { grid-template-columns: 1fr; } }
+.cs-strong { background: #fff; border: var(--hairline); border-left: 4px solid var(--c); border-radius: 8px; padding: 10px 14px; }
+.cs-strong h4 { margin: 0 0 4px; color: var(--c); }
+.cs-strong ol { margin: 0; padding-left: 20px; }
+.cs-strong li { margin: 8px 0; font-size: 0.86rem; }
+.cs-strong__facts { color: var(--color-text-muted); font-size: 0.8rem; }
+.cs-strong__why { font-size: 0.82rem; }
+
+.factor-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 900px) { .factor-grid { grid-template-columns: 1fr; } }
+.factor-card { background: #fff; border: var(--hairline); border-radius: 8px; padding: 10px 14px; }
+.factor-card h4 { margin: 0 0 6px; font-size: 0.92rem; }
+.factor-card table { width: 100%; font-size: 0.8rem; border-collapse: collapse; }
+.factor-card td, .factor-card th { padding: 4px 6px; border-bottom: 1px solid #eef1f2; text-align: right; }
+.factor-card td:first-child, .factor-card th:first-child { text-align: left; }
+.factor-card .read { margin: 6px 0 0; font-size: 0.8rem; color: var(--color-text-muted); }
+.factor-verdict { display: inline-block; font-size: 0.7rem; font-weight: 700; border-radius: 999px; padding: 1px 8px; margin-left: 6px; vertical-align: middle; }
+.factor-verdict--yes { background: #e3f1ec; color: #075646; }
+.factor-verdict--weak { background: #fdf0d5; color: #6b4a12; }
+.factor-verdict--no { background: #eceff1; color: #5a6b78; }
+
+.rules-table td, .rules-table th { vertical-align: top; font-size: 0.84rem; }
+.status-pill { display: inline-block; font-size: 0.7rem; font-weight: 700; border-radius: 999px; padding: 1px 8px; white-space: nowrap; }
+.status-pill--open { background: #e3f1ec; color: #075646; }
+.status-pill--limited { background: #fdf0d5; color: #6b4a12; }
+.status-pill--closed { background: #fbe4e2; color: #9a3530; }
+.status-pill--unknown { background: #eceff1; color: #5a6b78; }
+
+.verdict-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 1000px) { .verdict-grid { grid-template-columns: 1fr; } }
+.verdict { background: #fff; border: var(--hairline); border-radius: 8px; padding: 12px 14px; font-size: 0.88rem; }
+.verdict h4 { margin: 0 0 6px; }
+.verdict--go { border-top: 4px solid #075646; }
+.verdict--watch { border-top: 4px solid #d99132; }
+.verdict--avoid { border-top: 4px solid #9a3530; }
+.verdict ul { margin: 4px 0 0; padding-left: 18px; }
+.defs dt { font-weight: 700; margin-top: 8px; }
+.defs dd { margin: 2px 0 0 0; color: var(--color-text-muted); font-size: 0.9rem; }
+.factor-card th.factor-sub { text-align: left; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.03em; color: #075646; background: #f4f7f6; padding-top: 6px; }
+.data-table th.th-note span { display: block; font-weight: 500; font-size: 0.72rem; text-transform: none; letter-spacing: 0; color: var(--color-text-muted); }
+.cs-filter.cs-filter--sets { flex-direction: row; }
+.cs-tbl td { vertical-align: top; }
+.cs-tbl td:nth-child(2) { min-width: 150px; }
+.cs-tbl .cs-flag { margin-left: 4px; white-space: nowrap; }

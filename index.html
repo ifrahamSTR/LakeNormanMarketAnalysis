@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lake Norman, NC STR Market Analysis</title>
+<meta name="description" content="Lake Norman, NC short-term rental market and location analysis: where homes earn, which lake positions and amenities go with higher revenue, 4BR+ comp sets (private pool x waterfront), strongest comps and acquisition notes." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="css/styles.css?v=20261009-l1" />
+<link rel="stylesheet" href="css/lkn.css?v=20261009-l1" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <div class="site-header__brand">
+      <img class="site-header__logo" src="assets/branding/strsearch-logo.webp" alt="STR Search" />
+      <div class="site-header__title">Lake Norman, NC <span>STR Market &amp; Location Analysis</span></div>
+    </div>
+    <nav class="site-nav">
+      <a href="#market">Market</a>
+      <a href="#location">Location</a>
+      <a href="#compsets">4BR+ Comps</a>
+      <a href="#destinations">Why Here</a>
+      <a href="#acquisition">Acquisition</a>
+      <a href="#conclusions">Conclusions</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="overview" class="section section--hero">
+    <div class="container">
+      <p class="section-kicker">Market &amp; Location Analysis</p>
+      <h1 id="hero-title"></h1>
+      <p id="hero-sub" class="hero-sub"></p>
+      <div id="data-note" class="data-note"></div>
+    </div>
+  </section>
+
+  <!-- Section 1: Market context + revenue by bedroom size -->
+  <section id="market" class="section">
+    <div class="container">
+      <p class="section-kicker">Section 1</p>
+      <h2>The Market</h2>
+      <div id="market-overview-body" class="market-overview"></div>
+
+      <div class="chart-card chart-card--wide chart-card--spaced">
+        <canvas id="chart-revenue-distribution"></canvas>
+      </div>
+      <div id="chart-revenue-distribution-legend" class="chart-legend-row"></div>
+      <p id="chart-revenue-distribution-interpretation" class="caption"></p>
+
+      <h3 class="subsection-title">Revenue by Bedroom Size</h3>
+      <div id="size-ladder"></div>
+      <p id="size-ladder-note" class="caption"></p>
+
+      <h3 class="subsection-title">What Separates the Top Performers <span class="title-note">compared within the same size</span></h3>
+      <div id="drivers-table"></div>
+      <p class="caption" id="drivers-note"></p>
+    </div>
+  </section>
+
+  <!-- Section 2: Location analysis, organised by bedroom size (js/location.js + js/lkn.js) -->
+  <section id="location" class="section">
+    <div class="container">
+      <p class="section-kicker">Section 2</p>
+      <h2>Location Analysis by Bedroom Size</h2>
+      <p id="location-lede" class="subsection-lede"></p>
+      <iframe class="embedded-map embedded-map--tall" src="assets/overview/lakenorman_overview_map.html?v=20261009-l1" loading="lazy" title="Interactive map of Lake Norman STR listings by bedroom size, performance against same-size homes, ten reference areas, boat launches, marinas and I-77 interchanges"></iframe>
+      <p id="map-interpretation" class="caption"></p>
+
+      <h3 class="subsection-title">What the Lake Position Adds at Each Size</h3>
+      <div class="chart-card chart-card--wide">
+        <canvas id="chart-loc-size"></canvas>
+      </div>
+      <p class="loc-fade-note">Faded bars rest on fewer than 8 homes.</p>
+      <div id="loc-size-table"></div>
+      <p class="loc-key"><span style="--k:color-mix(in srgb,#075646 16%,white)">1.20× typical or more</span><span style="--k:color-mix(in srgb,#075646 7%,white)">1.07–1.19×</span><span style="--k:#fff">about typical</span><span style="--k:#fbe4e2">0.85× or less</span><span class="loc-key__thin">grey figures tagged “few homes” = fewer than 8 homes</span></p>
+
+      <h3 class="subsection-title">Where Each Size Earns, by Area</h3>
+      <div id="area-grid"></div>
+      <p id="area-grid-note" class="caption"></p>
+
+      <h3 class="subsection-title">Which Location Factors Actually Relate to Performance <span class="title-note">within the same size</span></h3>
+      <p id="factor-lede" class="subsection-lede"></p>
+      <div id="factor-grid" class="factor-grid"></div>
+      <p id="factor-note" class="caption"></p>
+
+      <h3 class="subsection-title">Straight-Line Distance Is Not Drive Time</h3>
+      <div id="drive-table"></div>
+      <p id="drive-note" class="caption"></p>
+
+      <div class="conclusion-box">
+        <h3>Where to look, by size</h3>
+        <div id="size-guide"></div>
+      </div>
+
+      <details class="ref-details">
+        <summary>Reference-area numbers (click an area on the map for its figures by bedroom size)</summary>
+        <div id="area-table"></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- Section 3: 4BR+ comp sets (js/compsets.js) -->
+  <section id="compsets" class="section">
+    <div class="container">
+      <p class="section-kicker">Section 3</p>
+      <h2>Comparable Sets: Entire Homes with 4+ Bedrooms</h2>
+      <p id="cs-lede" class="subsection-lede"></p>
+
+      <h3 class="subsection-title">The Four Core Sets</h3>
+      <div id="cs-cards" class="cs-cards"></div>
+      <p id="cs-cards-note" class="caption"></p>
+
+      <h3 class="subsection-title">Explore the Comps <span class="title-note">filter, sort and open any listing</span></h3>
+      <p id="cs-explorer-note" class="caption"></p>
+      <div id="cs-filters" class="cs-filters"></div>
+      <div id="cs-summary"></div>
+      <div class="chart-card chart-card--wide cs-chart"><canvas id="chart-cs-strip"></canvas></div>
+      <p id="cs-strip-note" class="caption"></p>
+      <div id="cs-table"></div>
+
+      <h3 class="subsection-title">Do Pools, Waterfront, Docks and Hot Tubs Command a Premium? <span class="title-note">within comparable homes</span></h3>
+      <div id="cs-premiums"></div>
+      <p id="cs-premium-note" class="caption"></p>
+
+      <h3 class="subsection-title">Strongest Comps by Set</h3>
+      <p id="cs-strong-note" class="caption"></p>
+      <div id="cs-strong" class="cs-strong-grid"></div>
+
+      <h3 class="subsection-title">Outliers, Missing Information and Low-Confidence Comparisons</h3>
+      <div id="cs-flags"></div>
+      <p id="cs-flags-note" class="caption"></p>
+    </div>
+  </section>
+
+  <!-- Section 4: why location changes the rate (destination context). Content: js/destination.js -->
+  <section id="destinations" class="section">
+    <div class="container">
+      <p class="section-kicker">Section 4</p>
+      <h2>Why Location Changes the Rate</h2>
+      <p id="dest-lede" class="subsection-lede"></p>
+      <div id="destination-body"></div>
+      <h3 class="subsection-title">When Guests Come</h3>
+      <div id="dest-season"></div>
+      <div id="dest-bridge" class="conclusion-box dest-bridge"></div>
+      <p id="dest-sources" class="dest-sources"></p>
+    </div>
+  </section>
+
+  <!-- Section 5: Traveller demographics -->
+  <section id="demographics" class="section">
+    <div class="container">
+      <p class="section-kicker">Section 5</p>
+      <h2>Traveller Demographics</h2>
+      <div id="demographics-intro-body"></div>
+      <div class="chart-row">
+        <div>
+          <div class="chart-card">
+            <canvas id="chart-demographics-pie"></canvas>
+          </div>
+        </div>
+        <div>
+          <div class="chart-card">
+            <canvas id="chart-demographics-bedroom"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Acquisition relevance (js/lkn.js) -->
+  <section id="acquisition" class="section">
+    <div class="container">
+      <p class="section-kicker">Section 6</p>
+      <h2>Acquisition Relevance</h2>
+      <p id="acq-lede" class="subsection-lede"></p>
+      <h3 class="subsection-title">Can You Run a Short-Term Rental There? <span class="title-note">by jurisdiction, as verified</span></h3>
+      <div id="rules-table"></div>
+      <p id="rules-note" class="caption"></p>
+      <h3 class="subsection-title">HOAs and Covenants</h3>
+      <div id="hoa-body"></div>
+      <h3 class="subsection-title">Homes for Sale: 4BR+ under $500k and Private-Pool Homes from $700k</h3>
+      <div id="sale-body"></div>
+    </div>
+  </section>
+
+  <!-- Section 7: Conclusions -->
+  <section id="conclusions" class="section">
+    <div class="container">
+      <p class="section-kicker">Section 7</p>
+      <h2>Conclusions: Where to Focus</h2>
+      <p id="concl-lede" class="subsection-lede"></p>
+      <div id="concl-verdicts" class="verdict-grid"></div>
+      <h3 class="subsection-title">The Comps to Underwrite Against</h3>
+      <div id="concl-comps"></div>
+      <h3 class="subsection-title">What the Evidence Rests On</h3>
+      <div id="concl-evidence"></div>
+    </div>
+  </section>
+
+  <!-- Sources, definitions and limitations -->
+  <section id="method" class="section">
+    <div class="container">
+      <p class="section-kicker">Method</p>
+      <h2>Sources, Definitions and Limitations</h2>
+      <div id="method-body"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p id="footer-note"></p>
+  </div>
+</footer>
+
+<div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Expanded image">
+  <button type="button" class="lightbox__close" aria-label="Close image" onclick="closeLightbox()">&times;</button>
+  <figure class="lightbox__figure">
+    <img id="lightbox-image" src="" alt="" />
+    <figcaption id="lightbox-caption"></figcaption>
+  </figure>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/region_data.js?v=20261009-l1"></script>
+<script src="js/compsets_data.js?v=20261009-l1"></script>
+<script src="js/render.js?v=20261009-l1"></script>
+<script src="js/location.js?v=20261009-l1"></script>
+<script src="js/data.js?v=20261009-l1"></script>
+<script src="js/destination.js?v=20261009-l1"></script>
+<script src="js/charts.js?v=20261009-l1"></script>
+<script src="js/compsets.js?v=20261009-l1"></script>
+<script src="js/lkn.js?v=20261009-l1"></script>
+<script src="js/main.js?v=20261009-l1"></script>
+</body>
+</html>
